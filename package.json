@@ -1,6 +1,6 @@
 {
   "name": "react-respond-to",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Responsive Component for React",
   "main": "dist/index.js",
   "scripts": {
@@ -15,6 +15,12 @@
   "bugs": {
     "url": "https://github.com/onefinestay/react-respond-to/issues"
   },
+  "keywords": [
+    "matchMedia",  
+    "react",
+    "react-component",    
+    "responsive"
+  ],
   "homepage": "https://github.com/onefinestay/react-respond-to#readme",
   "peerDependencies": {
     "react": ">=0.12.0"
