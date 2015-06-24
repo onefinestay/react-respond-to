@@ -2,6 +2,14 @@
 
 Responsive Component for React
 
+## Installation
+
+```shell
+npm install --save react-respond-to
+```
+
+Note: This library assumes you have the necessary polyfill in place for `Array.prototype.find`
+
 ## Basic Usage
 
 ```javascript
