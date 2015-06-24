@@ -16,6 +16,12 @@ const Index = React.createClass({
           <At value="1024px"><p>Medium Computer</p></At>
           <At value="1400px"><p>Wide Computer</p></At>
         </Respond>
+
+        <Respond to="orientation">
+          <At value="landscape"><p>Landscape</p></At>
+          <At value="portrait"><p>Portrait</p></At>
+        </Respond>
+
       </main>
     );
   },
