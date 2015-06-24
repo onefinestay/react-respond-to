@@ -11,7 +11,7 @@ Responsive Component for React
 npm install --save react-respond-to
 ```
 
-Note: This library assumes you have the necessary polyfill in place for `Array.prototype.find`
+Note: This library assumes you have the necessary polyfills in place for `Array.prototype.find` and `matchMedia`.
 
 ## Basic Usage
 
