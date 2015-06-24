@@ -52,11 +52,9 @@ class MyComponent extends React.Component {
           <At value="3dppx"><p>(3x) The future</p></At>
         </Respond>
       </div>
-    )
+    );
   } 
 }
-
-
 ```
 
 ## Todo
