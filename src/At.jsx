@@ -20,7 +20,13 @@ const At = React.createClass({
   },
 
   render() {
-    return this.props.children;
+    let result = this.props.children;
+
+    if (typeof result === 'string') {
+      result = <span>{result}</span>;
+    }        
+
+    return result;
   },
 });
 
