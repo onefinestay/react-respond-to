@@ -52,11 +52,6 @@ var webpackConfig = {
           'babel-loader?stage=1'
         ]
       },
-    ],
-    postLoaders: [
-      {
-        loader: "transform/cacheable?brfs"
-      }
     ]
   },
   resolve: {
