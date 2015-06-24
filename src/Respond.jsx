@@ -1,20 +1,10 @@
 import React from 'react';
 
-import At from './At';
-
 
 const Respond = React.createClass({
   propTypes: {
     to: React.PropTypes.string.isRequired,
-    children: (props, propName) => {
-      let val = props[propName];
-
-      if (React.PropTypes.array(props, propName) === null
-          && val.every(child => child.type === At)) {
-        return null;
-      }
-      return new Error(`'${propName}' must be an array of At elements`);
-    },
+    children: React.PropTypes.any.isRequired,
   },
 
   componentWillMount() {
