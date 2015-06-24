@@ -14,7 +14,12 @@ var At = _react2['default'].createClass({
   displayName: 'At',
 
   propTypes: {
-    'default': _react2['default'].PropTypes.bool,
+    'default': function _default(props, propName) {
+      if (props.value || props[propName]) {
+        return null;
+      }
+      return new Error('Must have either a \'value\' or \'default\' prop');
+    },
     value: _react2['default'].PropTypes.any
   },
 

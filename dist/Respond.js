@@ -15,7 +15,7 @@ var Respond = _react2['default'].createClass({
 
   propTypes: {
     to: _react2['default'].PropTypes.string.isRequired,
-    children: _react2['default'].PropTypes.any
+    children: _react2['default'].PropTypes.any.isRequired
   },
 
   componentWillMount: function componentWillMount() {
