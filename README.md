@@ -31,3 +31,9 @@ import {Respond, At} from 'react-respond-to';
   <At value="portrait"><p>Portrait</p></At>
 </Respond>
 ```
+
+## Todo
+
+* Server-side rendering, specifying the server case. We can't assume it's the same as default
+* Battle-hardening
+* Tests (obviously)
