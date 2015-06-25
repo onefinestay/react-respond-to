@@ -38,7 +38,7 @@ const Index = React.createClass({
 
         <Respond to="max-width" at="850px">
           Only visible up to 850px
-        </Respond>        
+        </Respond>
 
       </main>
     );

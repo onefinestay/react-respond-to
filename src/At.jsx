@@ -24,7 +24,7 @@ const At = React.createClass({
 
     if (typeof result === 'string') {
       result = <span>{result}</span>;
-    }        
+    }
 
     return result;
   },

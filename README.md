@@ -51,6 +51,10 @@ class MyComponent extends React.Component {
           <At value="2dppx"><p>(2x) Retina-ish</p></At>
           <At value="3dppx"><p>(3x) The future</p></At>
         </Respond>
+
+        <Respond to="max-width" at="850px">
+          Only visible up to 850px
+        </Respond>        
       </div>
     );
   } 
