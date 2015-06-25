@@ -42,7 +42,7 @@ const Respond = React.createClass({
         let q = matchMedia(queryString);
         q.addListener(this.onMatch);
         return [q, v];
-      });      
+      });
     }
   },
 
@@ -61,7 +61,7 @@ const Respond = React.createClass({
 
         if (typeof result === 'string') {
           result = <span>{result}</span>;
-        }        
+        }
 
         return result;
       }
@@ -73,8 +73,8 @@ const Respond = React.createClass({
         return children.find(c => c.props.value === val);
       } else if (defaultChild) {
         return defaultChild;
-      }      
-    } 
+      }
+    }
 
     return null;
   },
