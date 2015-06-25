@@ -30,26 +30,26 @@ class MyComponent extends React.Component {
         <h3>Width</h3>
 
         <Respond to="min-width">
-          <At default><p>Up to 479px</p></At>
-          <At value="480px"><p>480px &ndash; 849px</p></At>
-          <At value="850px"><p>850px &ndash; 1023px</p></At>
-          <At value="1024px"><p>1024px &ndash; 1399px</p></At>
-          <At value="1400px"><p>1400px upwards</p></At>
+          <At default>Up to 479px</At>
+          <At value="480px">480px &ndash; 849px</At>
+          <At value="850px">850px &ndash; 1023px</At>
+          <At value="1024px">1024px &ndash; 1399px</At>
+          <At value="1400px">1400px upwards</At>
         </Respond>
 
         <h3>Orientation</h3>
 
         <Respond to="orientation">
-          <At value="landscape"><p>Landscape</p></At>
-          <At value="portrait"><p>Portrait</p></At>
+          <At value="landscape">Landscape</At>
+          <At value="portrait">Portrait</At>
         </Respond>
 
         <h3>Pixel Density</h3>
 
         <Respond to="min-resolution">
-          <At value="1dppx"><p>(1x) Old-fashioned</p></At>
-          <At value="2dppx"><p>(2x) Retina-ish</p></At>
-          <At value="3dppx"><p>(3x) The future</p></At>
+          <At value="1dppx">(1x) Old-fashioned</At>
+          <At value="2dppx">(2x) Retina-ish</At>
+          <At value="3dppx">(3x) The future</At>
         </Respond>
 
         <Respond to="max-width" at="850px">
