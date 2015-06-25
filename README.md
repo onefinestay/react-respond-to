@@ -19,6 +19,8 @@ Each `Respond` element can query a single media feature (if you want more comple
 
 Each `At` element can specify a value to test. The order here is important, because only one child will ever be rendered. Either the last match will be used (look at min-width to understand why this makes sense), or if nothing matches, default will be used. If you don't provide a default, nothing will be rendered.
 
+If you only want to check against a single value to decide whether to display a child or not, there's a short-hand where you can specify an `at` property on the `Response` element itself.
+
 
 ```javascript
 import {Respond, At} from 'react-respond-to';
