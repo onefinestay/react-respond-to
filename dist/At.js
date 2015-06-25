@@ -31,7 +31,17 @@ var At = _react2['default'].createClass({
   },
 
   render: function render() {
-    return this.props.children;
+    var result = this.props.children;
+
+    if (typeof result === 'string') {
+      result = _react2['default'].createElement(
+        'span',
+        null,
+        result
+      );
+    }
+
+    return result;
   }
 });
 

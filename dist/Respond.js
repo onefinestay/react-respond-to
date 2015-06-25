@@ -15,7 +15,8 @@ var Respond = _react2['default'].createClass({
 
   propTypes: {
     to: _react2['default'].PropTypes.string.isRequired,
-    children: _react2['default'].PropTypes.any.isRequired
+    children: _react2['default'].PropTypes.any.isRequired,
+    at: _react2['default'].PropTypes.any
   },
 
   componentWillMount: function componentWillMount() {
@@ -35,6 +36,7 @@ var Respond = _react2['default'].createClass({
 
     var to = props.to;
     var children = props.children;
+    var at = props.at;
 
     if (this.queries) {
       this.queries.forEach(function (q) {
@@ -42,16 +44,25 @@ var Respond = _react2['default'].createClass({
       });
     }
 
-    this.queries = children.filter(function (c) {
-      return !c.props['default'];
-    }).map(function (c) {
-      var v = c.props.value;
-      var queryString = '(' + to + ': ' + c.props.value + ')';
+    if (at) {
+      var queryString = '(' + to + ': ' + at + ')';
 
       var q = matchMedia(queryString);
-      q.addListener(_this.onMatch);
-      return [q, v];
-    });
+      q.addListener(this.onMatch);
+
+      this.queries = [[q, at]];
+    } else {
+      this.queries = children.filter(function (c) {
+        return !c.props['default'];
+      }).map(function (c) {
+        var v = c.props.value;
+        var queryString = '(' + to + ': ' + c.props.value + ')';
+
+        var q = matchMedia(queryString);
+        q.addListener(_this.onMatch);
+        return [q, v];
+      });
+    }
   },
 
   componentWillUnmount: function componentWillUnmount() {
@@ -63,29 +74,50 @@ var Respond = _react2['default'].createClass({
   },
 
   render: function render() {
-    var children = this.props.children;
+    var _props = this.props;
+    var children = _props.children;
+    var at = _props.at;
 
-    var defaultChild = children.find(function (c) {
-      return c.props['default'];
-    });
     var matches = this.queries.filter(function (q) {
       return q[0].matches;
     });
 
-    if (matches.length) {
-      var _ret = (function () {
-        var val = matches[matches.length - 1][1];
-        return {
-          v: children.find(function (c) {
-            return c.props.value === val;
-          })
-        };
-      })();
+    if (at) {
+      if (matches.length) {
+        var val = matches[0];
+        var result = children;
 
-      if (typeof _ret === 'object') return _ret.v;
-    } else if (defaultChild) {
-      return defaultChild;
+        if (typeof result === 'string') {
+          result = _react2['default'].createElement(
+            'span',
+            null,
+            result
+          );
+        }
+
+        return result;
+      }
+    } else {
+      var defaultChild = children.find(function (c) {
+        return c.props['default'];
+      });
+
+      if (matches.length) {
+        var _ret = (function () {
+          var val = matches[matches.length - 1][1];
+          return {
+            v: children.find(function (c) {
+              return c.props.value === val;
+            })
+          };
+        })();
+
+        if (typeof _ret === 'object') return _ret.v;
+      } else if (defaultChild) {
+        return defaultChild;
+      }
     }
+
     return null;
   }
 });
