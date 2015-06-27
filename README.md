@@ -13,6 +13,15 @@ npm install --save react-respond-to
 
 Note: This library assumes you have the necessary polyfills in place for `Array.prototype.find` and `matchMedia`.
 
+## Why another responsive component?
+
+Simply put, we looked at what was available and didn't find an API to our liking. We had a few goals:
+
+* Abstract away the syntax of media queries a bit, even if it means adding restrictions (we don't allow you to test against multiple features at the same time).
+* The API should be obvious without explanation
+* Avoid having to specify both min-width and max-width when you have multiple breakpoint. We do this by always picking the last matching child, we should feel intuitive to anyone familiar with the mobile-up pattern for CSS.
+
+
 ## Basic Usage
 
 Each `Respond` element can query a single media feature (if you want more complex queries, you can nest things). The list of available features is browser-dependent, but they are well-listed elsewhere.
