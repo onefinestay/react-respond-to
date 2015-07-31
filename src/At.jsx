@@ -14,6 +14,7 @@ const At = React.createClass({
 
   getDefaultProps() {
     return {
+      initial: false,
       default: false,
       value: null,
     };

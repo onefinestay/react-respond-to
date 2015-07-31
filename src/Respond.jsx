@@ -6,6 +6,13 @@ const Respond = React.createClass({
     to: React.PropTypes.string.isRequired,
     children: React.PropTypes.any.isRequired,
     at: React.PropTypes.any,
+    initial: React.PropTypes.bool,
+  },
+
+  getInitialState() {
+    return {
+      mounted: false
+    };
   },
 
   componentWillMount() {
@@ -15,6 +22,14 @@ const Respond = React.createClass({
   componentWillReceiveProps(props) {
     this.updateQueries(props);
   },
+
+  componentDidMount() {
+    this.setState({mounted: true});
+  },
+
+  componentWillUnmount() {
+    this.queries.forEach(q => q[0].removeListener(this.onMatch));
+  },  
 
   onMatch() {
     this.forceUpdate();
@@ -46,16 +61,14 @@ const Respond = React.createClass({
     }
   },
 
-  componentWillUnmount: function(){
-    this.queries.forEach(q => q[0].removeListener(this.onMatch));
-  },
-
   render() {
-    const {children, at} = this.props;
+    const {children, at, initial} = this.props;
+    const {mounted} = this.state;
     const matches = this.queries.filter(q => q[0].matches);
 
     if (at) {
-      if (matches.length) {
+      // Shortcut case
+      if ((!mounted && initial) || (mounted && matches.length)) {
         let val = matches[0];
         let result = children;
 
@@ -70,9 +83,15 @@ const Respond = React.createClass({
 
       if (matches.length) {
         let val = matches[matches.length - 1][1];
-        return children.find(c => c.props.value === val);
+        let child = children.find(c => c.props.value === val);
+
+        if ((!mounted && child.props.initial) || mounted) {
+          return child;
+        }
       } else if (defaultChild) {
-        return defaultChild;
+        if ((!mounted && defaultChild.props.initial) || mounted) {
+          return defaultChild;
+        }
       }
     }
 

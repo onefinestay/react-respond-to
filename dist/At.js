@@ -25,6 +25,7 @@ var At = _react2['default'].createClass({
 
   getDefaultProps: function getDefaultProps() {
     return {
+      initial: false,
       'default': false,
       value: null
     };
