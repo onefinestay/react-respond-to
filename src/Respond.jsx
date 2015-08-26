@@ -1,5 +1,13 @@
 import React from 'react';
 
+// Convert a value that potentially isn't an array into one
+// If it is already an array just return it
+function valueToArray(value) {
+  if (Array.isArray(value)) {
+    return value;
+  }
+  return [value];
+}
 
 const Respond = React.createClass({
   propTypes: {
@@ -11,7 +19,7 @@ const Respond = React.createClass({
 
   getInitialState() {
     return {
-      mounted: false
+      mounted: false,
     };
   },
 
@@ -29,7 +37,7 @@ const Respond = React.createClass({
 
   componentWillUnmount() {
     this.queries.forEach(q => q[0].removeListener(this.onMatch));
-  },  
+  },
 
   onMatch() {
     this.forceUpdate();
@@ -50,7 +58,7 @@ const Respond = React.createClass({
 
       this.queries = [[q, at]];
     } else {
-      this.queries = children.filter(c => !c.props.default).map((c) => {
+      this.queries = valueToArray(children).filter(c => !c.props.default).map((c) => {
         const v = c.props.value;
         const queryString = `(${ to }: ${ c.props.value })`;
 
@@ -69,7 +77,6 @@ const Respond = React.createClass({
     if (at) {
       // Shortcut case
       if ((!mounted && initial) || (mounted && matches.length)) {
-        let val = matches[0];
         let result = children;
 
         if (typeof result === 'string') {
@@ -79,11 +86,11 @@ const Respond = React.createClass({
         return result;
       }
     } else {
-      const defaultChild = children.find(c => c.props.default);
+      const defaultChild = valueToArray(children).find(c => c.props.default);
 
       if (matches.length) {
         let val = matches[matches.length - 1][1];
-        let child = children.find(c => c.props.value === val);
+        let child = valueToArray(children).find(c => c.props.value === val);
 
         if ((!mounted && child.props.initial) || mounted) {
           return child;
