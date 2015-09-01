@@ -10,6 +10,15 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+// Convert a value that potentially isn't an array into one
+// If it is already an array just return it
+function valueToArray(value) {
+  if (Array.isArray(value)) {
+    return value;
+  }
+  return [value];
+}
+
 var Respond = _react2['default'].createClass({
   displayName: 'Respond',
 
@@ -71,7 +80,7 @@ var Respond = _react2['default'].createClass({
 
       this.queries = [[q, at]];
     } else {
-      this.queries = children.filter(function (c) {
+      this.queries = valueToArray(children).filter(function (c) {
         return !c.props['default'];
       }).map(function (c) {
         var v = c.props.value;
@@ -98,7 +107,6 @@ var Respond = _react2['default'].createClass({
     if (at) {
       // Shortcut case
       if (!mounted && initial || mounted && matches.length) {
-        var val = matches[0];
         var result = children;
 
         if (typeof result === 'string') {
@@ -112,14 +120,14 @@ var Respond = _react2['default'].createClass({
         return result;
       }
     } else {
-      var defaultChild = children.find(function (c) {
+      var defaultChild = valueToArray(children).find(function (c) {
         return c.props['default'];
       });
 
       if (matches.length) {
         var _ret = (function () {
           var val = matches[matches.length - 1][1];
-          var child = children.find(function (c) {
+          var child = valueToArray(children).find(function (c) {
             return c.props.value === val;
           });
 
